@@ -1,0 +1,46 @@
+angular-multiple-languages
+================
+This is a very simple module to localize strings in an Angular page.
+
+It is based on this code: https://github.com/pasx/angular-i18n
+
+The main difference is that the localization service is a module separate from the application module. My goal was to complete the example because original project did not include angular.min.js and bootstrap.min.js.
+
+##Usage
+
+To localize your application you only need to proceed as follows:
+
+- Add the file i18n.js to your solution and reference it.
+- Reference the i18n module in your application module: app = angular.module('app', ['i18n']);
+- Create the i18n folder and add the translation files.
+- Set JSON as MIME type in web.config (this can also be configured in IIS) :
+    <system.webServer>  
+        <staticContent>
+          <mimeMap fileExtension=".json" mimeType="application/json" />
+    </staticContent>
+    </system.webServer>
+
+The default language is initialized to en in i18n.js you can change it to fr to see the difference by editing this line:
+   i18nService.initialize($rootScope,'en');
+to
+   i18nService.initialize($rootScope,'fr');
+
+##Evolution
+
+Add a language switch function calling initialize on the service with a combo in the UI.
+
+
+Directory structure (you will need to add the lib folder and its content):
+
+index.html
+-js
+  app.js
+  i18n.js
+-i18n
+  i18n_en.json
+  i18n_fr.json
+  i18n_cn.json
+  i18n_tw.json
+-css
+  styles.css
+
